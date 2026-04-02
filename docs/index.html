@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Finance Dashboard UI</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="page">
+    <header>
+      <div>
+        <h1>Finance Dashboard UI</h1>
+        <p class="subtle">Interactive frontend for the finance backend. Login, view users, records, and dashboard analytics.</p>
+      </div>
+      <div id="auth-panel" class="status info">Loading auth...</div>
+    </header>
+
+    <div id="status" class="status info">Sign in to see backend data.</div>
+
+    <div class="tabs">
+      <button class="tab-button active" data-tab="tab-users">Users</button>
+      <button class="tab-button" data-tab="tab-records">Records</button>
+      <button class="tab-button" data-tab="tab-dashboard">Dashboard</button>
+      <button class="tab-button" data-tab="tab-endpoints">Endpoints</button>
+    </div>
+
+    <div id="tab-users" class="tab-panel card">
+      <div class="grid-2">
+        <div>
+          <h2>Users</h2>
+          <p class="subtle">This view calls <code>GET /users</code> and displays the live backend response.</p>
+        </div>
+        <div style="text-align:right;"><button id="refreshUsers" class="button secondary">Refresh</button></div>
+      </div>
+      <div class="table-header"><span>ID</span><span>Name</span><span>Email</span><span>Role</span><span>Status</span></div>
+      <div id="usersList"></div>
+    </div>
+
+    <div id="tab-records" class="tab-panel card" style="display:none;">
+      <div class="grid-2">
+        <div>
+          <h2>Records</h2>
+          <p class="subtle">This view calls <code>GET /records</code> for backend-backed financial entries.</p>
+        </div>
+        <div style="text-align:right;"><button id="refreshRecords" class="button secondary">Refresh</button></div>
+      </div>
+      <div class="table-header"><span>ID</span><span>Category</span><span>Type</span><span>Amount</span><span>Date</span></div>
+      <div id="recordsList"></div>
+    </div>
+
+    <div id="tab-dashboard" class="tab-panel card" style="display:none;">
+      <div class="grid-2">
+        <div>
+          <h2>Dashboard</h2>
+          <p class="subtle">Live summary from <code>GET /dashboard/summary</code> and trends from <code>GET /dashboard/trends</code>.</p>
+        </div>
+        <div style="text-align:right;"><button id="refreshDashboard" class="button secondary">Refresh</button></div>
+      </div>
+      <div id="dashboardSummary"></div>
+      <h3 style="margin-top:24px;">Monthly trends</h3>
+      <div id="dashboardTrends"></div>
+    </div>
+
+    <div id="tab-endpoints" class="tab-panel card" style="display:none;">
+      <h2>Backend Endpoints</h2>
+      <div class="grid-2">
+        <div>
+          <h3>Auth</h3>
+          <p><code>POST /auth/login</code></p>
+        </div>
+        <div>
+          <h3>Users</h3>
+          <p><code>GET /users</code><br><code>POST /users</code><br><code>GET /users/:id</code><br><code>PATCH /users/:id</code><br><code>DELETE /users/:id</code></p>
+        </div>
+        <div>
+          <h3>Records</h3>
+          <p><code>GET /records</code><br><code>GET /records/:id</code><br><code>POST /records</code><br><code>PUT /records/:id</code><br><code>DELETE /records/:id</code></p>
+        </div>
+        <div>
+          <h3>Dashboard</h3>
+          <p><code>GET /dashboard/summary</code><br><code>GET /dashboard/trends</code></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="./app.js"></script>
+</body>
+</html>
